@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heti Órarend</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        .day {
+            margin-bottom: 20px;
+        }
+        h2 {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Heti Órarend</h1>
+    <button onclick="mutasdOrarendet()">Órarend Megjelenítése</button>
+
+    <div class="output" id="output"></div>
+
+    <script>
+        // Heti órarend adatok (tömb és objektumok)
+        const orarend = [
+            { nap: "Hétfő", orak: ["Matematika", "Fizika", "Történelem"] },
+            { nap: "Kedd", orak: ["Biológia", "Kémia", "Testnevelés"] },
+            { nap: "Szerda", orak: ["Irodalom", "Matematika", "Földrajz"] },
+            { nap: "Csütörtök", orak: ["Angol", "Történelem", "Fizika"] },
+            { nap: "Péntek", orak: ["Matematika", "Kémia", "Informatika"] }
+        ];
+
+        // Heti órarend kiíratása
+        function mutasdOrarendet() {
+            const outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = "<h2>Heti Órarend:</h2>";
+
+            orarend.forEach(nap => {
+                const dayDiv = document.createElement("div");
+                dayDiv.className = "day";
+
+                const title = document.createElement("h3");
+                title.textContent = nap.nap;
+                dayDiv.appendChild(title);
+
+                const ul = document.createElement("ul");
+                nap.orak.forEach(ora => {
+                    const li = document.createElement("li");
+                    li.textContent = ora;
+                    ul.appendChild(li);
+                });
+                dayDiv.appendChild(ul);
+
+                outputDiv.appendChild(dayDiv);
+            });
+        }
+        /*Működés
+        Adatok tárolása:
+            
+        Az órarend tömböt használ, amely minden naphoz egy objektumot tartalmaz.
+        Minden objektum két mezőt tartalmaz: nap (a nap neve) és orak (egy tömb az adott nap óráival).
+        Adatok megjelenítése:
+            
+        A program minden naphoz létrehoz egy címkét (<h3>) és az órák listáját (<ul>).
+        Az eredményt dinamikusan építi fel a DOM segítségével, és megjeleníti az oldalon.*/
+    </script>
+</body>
+</html>
